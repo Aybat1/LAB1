@@ -11,13 +11,15 @@ namespace ConsoleApplication4
     {
         static void Main(string[] args)
         {
-            Read();
+           Read();
+       
         }
         public static void Otvet(int answer)
         {
             FileStream fs = new FileStream("output.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
             StreamWriter sw = new StreamWriter(fs);
             sw.WriteLine(answer);
+            Console.WriteLine(answer);
             sw.Close();
             fs.Close();
             Console.ReadKey();
@@ -35,20 +37,23 @@ namespace ConsoleApplication4
             {
                 array[i] = int.Parse(nums[i]);
             }
-            for(int i = 0; i < array.Length-1; i++)
+            for (int j = 0; j < array.Length; j++)
             {
-                if (array[i] > array[i + 1])
+                for (int i = 0; i < array.Length - 1; i++)
                 {
-                    n = array[i];
-                    array[i] = array[i + 1];
-                    array[i + 1] = n;
-                }
+                    if (array[i] > array[i + 1])
+                    {
+                        n = array[i];
+                        array[i] = array[i + 1];
+                        array[i + 1] = n;
+                    }
 
+                }
             }
             for(int i = 0; i < array.Length; i++)
             {
                 int c = 0;
-                for(int j = 1; j < array.Length; j++)
+                for(int j = 1; j < array[i]; j++)
                 {
                     if (array[i] % j == 0)
                     {

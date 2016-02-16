@@ -28,18 +28,20 @@ namespace ConsoleApplication3
 
     }
 
-        class Program
+    class Program
+    {
+        static void Main(string[] args)
         {
-            static void Main(string[] args)
-            {
-                string a, b, c;
-                double d;
+            string a, b, c;
+            double d;
             Console.WriteLine("How many students you want involve?");
             int count = int.Parse(Console.ReadLine());
-            Student[] infor= new Student[count];
+            Student[] infor = new Student[count];
             for (int i = 0; i < count; i++)
             {
-                try { Console.WriteLine("Write the first name");
+                try
+                {
+                    Console.WriteLine("Write the first name");
                     a = Console.ReadLine();
                     Console.WriteLine("Write the second name");
                     b = Console.ReadLine();
@@ -49,18 +51,37 @@ namespace ConsoleApplication3
                     d = double.Parse(Console.ReadLine());
                     infor[i] = new Student(a, b, c, d);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine(e);
                     Console.ReadKey();
                 }
 
             }
-            for(int i=0; i<count;i++)
+            Console.WriteLine("Enter 1 to see all list , enter 2 to see gpa only");
+            ConsoleKeyInfo button = Console.ReadKey();
+            if (button.Key == ConsoleKey.NumPad1)
             {
-                Console.WriteLine(infor[i]);
+                for (int i = 0; i < count; i++)
+                {
+                    Console.WriteLine(infor[i]);
+                }
+                Console.ReadKey();
             }
-            Console.ReadKey();
+            else if(button.Key==ConsoleKey.NumPad2)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    Console.WriteLine("Name : {0} GPA : {1}",infor[i].name,infor[i].GPA);
+                }
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Good buy");
+                Console.ReadKey();
             }
         }
     }
+}
+    

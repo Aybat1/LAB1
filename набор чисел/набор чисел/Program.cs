@@ -12,6 +12,7 @@ namespace набор_чисел
     {
         static void Main(string[] args)
         {
+            Create();
             Read();
 
         }
@@ -21,6 +22,7 @@ namespace набор_чисел
         {
             FileStream fs = new FileStream("input.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
             StreamWriter sw = new StreamWriter(fs);
+            
             sw.WriteLine("2 56 78 1 97 85 32");
             sw.Close();
             fs.Close();
@@ -29,10 +31,10 @@ namespace набор_чисел
 
         public static void Read()
         {
-            FileStream fs1 = new FileStream("input.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            FileStream fs1 = new FileStream("input.txt", FileMode.Open, FileAccess.ReadWrite);
             StreamReader sr = new StreamReader(fs1);
 
-            string a = sr.ReadToEnd();
+            string a = sr.ReadLine();
             Console.WriteLine(a);
             string[] n = a.Split();
             int max = Convert.ToInt32(n[0]);
@@ -40,11 +42,11 @@ namespace набор_чисел
             for (int i = 0; i < n.Length; i++)   
             {
 
-                if (Convert.ToInt32(n[i]) > max)
+                if (int.Parse(n[i]) > max)
                 {
                     max = Convert.ToInt32(n[i]);
                 }
-                if (Convert.ToInt32(n[i]) < min)
+                if (int.Parse(n[i]) < min)
                 {
                     min = Convert.ToInt32(n[i]);
                 }
@@ -55,6 +57,7 @@ namespace набор_чисел
             sr.Close();
             fs1.Close();
             Console.ReadKey();
+            
         }
     }
 }
